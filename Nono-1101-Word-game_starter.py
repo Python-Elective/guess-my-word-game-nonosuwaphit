@@ -41,8 +41,8 @@ def is_word_guessed(secret_word, letters_guessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE...
-    for i in secret_word:
-      if i in letters_guessed:
+    for letter in secret_word:
+      if letter in letters_guessed:
         pass
       else:
         return False
@@ -65,10 +65,9 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
     # FILL IN YOUR CODE HERE...
     full_word = ''
-    for i in secret_word:
-      if i in letters_guessed:
-        full_word += i
-        pass
+    for letter in secret_word:
+      if letter in letters_guessed:
+        full_word += letter
       else:
         full_word += "_"
     return letters_guessed
@@ -87,8 +86,11 @@ def get_available_letters(letters_guessed):
       yet been guessed.
     '''
     # FILL IN YOUR CODE HERE...   
-    pass
+    available_letter = string.ascii_lowercase
 
+    for letter in letters_guessed:
+        available_letter = available_letter.replace(letter, "")
+    return available_letter
 
 
 #Testcases 
@@ -115,7 +117,33 @@ def game_loop(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE...
-    pass
+    print("Let the game begin!")
+    print("I am thinking of a word with " + len(secret_word)  + "letters")
+    guess_num = 8
+    guess_list = []
+    
+    while is_word_guessed(secret_word, guess_list) == False and guess_num > 0:
+        print("You have", guess_num, "guesses remaining")
+        print("Letters available to you:", get_available_letters(guess_list))
+        guess_a_letter = input("Guess a letter:").lower()
+
+        if (guess_a_letter in get_available_letters(guess_list)):
+            guess_list.append(guess_a_letter)
+            if (guess_a_letter in secret_word):
+                print("Correct:", get_guessed_word(secret_word, guess_list))
+            else:
+                print("Incorrect, this letter is not in my word:", get_guessed_word(secret_word, guess_list))
+                guess_num -= 1
+        else:
+          print("You fool", get_guessed_word(secret_word, guess_list))
+
+    if (is_word_guessed(secret_word, guess_list)):
+          print ("You WIN")
+    else :
+          print("GAME OVER ! The word was",(secret_word))
+
+
+
 
 
 
