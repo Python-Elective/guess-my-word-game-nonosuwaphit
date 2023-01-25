@@ -118,7 +118,7 @@ def game_loop(secret_word):
     '''
     # FILL IN YOUR CODE HERE...
     print("Let the game begin!")
-    print("I am thinking of a word with " + len(secret_word)  + "letters")
+    print("I am thinking of a word with " + str(len(secret_word))  + "letters")
     guess_num = 8
     guess_list = []
     
