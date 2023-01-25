@@ -42,9 +42,7 @@ def is_word_guessed(secret_word, letters_guessed):
     '''
     # FILL IN YOUR CODE HERE...
     for letter in secret_word:
-      if letter in letters_guessed:
-        pass
-      else:
+      if letter not in letters_guessed:
         return False
     return True
 
@@ -53,7 +51,7 @@ def is_word_guessed(secret_word, letters_guessed):
 # print(is_word_guessed('apple', ['a', 'e', 'i', 'k', 'p', 'r', 's']))
 # print(is_word_guessed('durian', ['h', 'a', 'c', 'd', 'i', 'm', 'n', 'r', 't', 'u']))
 # print(is_word_guessed('pineapple', []))
-
+# quit()
 
 
 def get_guessed_word(secret_word, letters_guessed):
@@ -69,8 +67,8 @@ def get_guessed_word(secret_word, letters_guessed):
       if letter in letters_guessed:
         full_word += letter
       else:
-        full_word += "_"
-    return letters_guessed
+        full_word += "_ "
+    return full_word
     
     
     
@@ -78,6 +76,7 @@ def get_guessed_word(secret_word, letters_guessed):
 #Testcases
 # print(get_guessed_word('apple', ['e', 'i', 'k', 'p', 'r', 's']))
 # print(get_guessed_word('durian', ['a', 'c', 'd', 'h', 'i', 'm', 'n', 'r', 't', 'u']))
+# quit()
 
 def get_available_letters(letters_guessed):
     '''
@@ -95,6 +94,7 @@ def get_available_letters(letters_guessed):
 
 #Testcases 
 # print( get_available_letters(['e', 'i', 'k', 'p', 'r', 's']) )
+# quit()
   
 def game_loop(secret_word):
     '''
@@ -118,7 +118,7 @@ def game_loop(secret_word):
     '''
     # FILL IN YOUR CODE HERE...
     print("Let the game begin!")
-    print("I am thinking of a word with " + str(len(secret_word))  + "letters")
+    print("I am thinking of a word with " + str(len(secret_word))  + " letters")
     guess_num = 8
     guess_list = []
     
@@ -136,6 +136,7 @@ def game_loop(secret_word):
                 guess_num -= 1
         else:
           print("You fool", get_guessed_word(secret_word, guess_list))
+        print()
 
     if (is_word_guessed(secret_word, guess_list)):
           print ("You WIN")
@@ -150,7 +151,7 @@ def game_loop(secret_word):
 
 def main():
     secret_word = choose_word(word_list)
-    game_loop(secret_word)
+    game_loop("today")
 
 # Testcases
 # you might want to pick your own
